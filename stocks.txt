@@ -1,0 +1,33 @@
+Microsoft,MSFT,23.34
+Google Inc,GOOG,786.79
+Bank of America,BAC,16.76
+AT&T Inc,T,34.54
+Nike,NKE,52.65
+Intel,INTC,37.75
+3M,MMM,176.23
+American Express,AXP,64.04
+Apple,AAPL,113.05
+Boeing,BA,131.74
+Caterpillar,CAT,88.77
+Chevron,CVX,102.92
+Cisco,CSCO,31.72
+Coca-Cola,KO,42.32
+Disney,DIS,92.86
+Exxon Mobil,XOM,87.28
+General Electric,GE,29.62
+Goldman Sachs,GS,161.27
+Home Depot,HD,128.68
+IBM,IBM,158.85
+Johnson & Johnson,JNJ,118.13
+JPMorgan Chase,JPM,66.59
+McDonald's,MCD,115.36
+Merck,MRK,62.41
+MSFT Microsoft	57.60
+Pfizer,PFE,33.87
+Procter & Gamble,PG,89.75
+Travelers Companies Inc,TRV,114.55
+United Technologies,UTX,101.60
+UnitedHealth,UNH,140.00
+Verizon,VZ,51.98
+V Visa	82.70
+Wal-Mart,WMT,72.12
