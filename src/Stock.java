@@ -1,4 +1,7 @@
 import java.util.Random;			//Import Random Generator
+import java.io.*;
+import java.util.Scanner;
+
 
 public class Stock {
 	//Variables
@@ -111,7 +114,17 @@ public class Stock {
 		outputFileName = s;
 	}
 	public void SetInputFileName(String s) {
-		inputFileName = s;
+		File file = new File(s);
+		
+		if(file.isFile()) {
+			
+			inputFileName = s;
+		}
+		else{
+			System.out.print("Does not work.");
+			System.exit(1004);
+		}
+		
 	}
 	/**
 	 * This returns the company name 
@@ -156,7 +169,7 @@ public class Stock {
 	public String getOutputFileName() {
 		return outputFileName;
 	}
-	public String getInputFileName() {
+	public String GetInputFileName() {
 		return inputFileName;
 	}
 	/**
@@ -214,8 +227,86 @@ public class Stock {
 		//Print results to screen for user to see the Stock Prices Fluctuation
 		System.out.printf("%s\t%s\t%.2f\t\t\t%.2f\t\t%.2f\t\t%.2f\n", cN, cS, cP, nP, nP-cP, rn);
 	}
-	public double FindAverage(double [] p) {
-		return 0;
+	public double FindAverage(double [][] p) {
+		double sum = 0;
+		double average;
+		
+		for(int i=0; i<p.length; i++) {
+			sum+=p[0][i];
+		}
+		average = sum/p.length;
+		
+		return average;
 	}
+	
+	public String FindHighest(double [] p, String[] s) {
+		String highest = new String();
+		int index = 0;
+		double value = 0;
+		
+		for(int i = 0; i<p.length; i++) {
+			if(p[i] > value) {
+				value = p[i];
+				index = i;
+			}
+		}
+		highest = s[index];
+		return highest;
+	}
+	
+	public String FindLowest(double [] p, String[] s) {
+		String lowest = new String();
+		int index = 0;
+		double value = p[0];
+		
+		for(int i = 0; i<p.length; i++) {
+			if(p[i] < value) {
+				value = p[i];
+				index = i;
+			}
+		}
+		lowest = s[index];
+		return lowest;
+	}
+	
+	public String [] ReadFile (String f) throws IOException  {
+		File test = new File(f);
+		File file = new File(f);
+		String count = new String();
+		Scanner fileInput1 = new Scanner(test);
+		Scanner fileInput2 = new Scanner(file);
+		int i = 0;
+		while(fileInput1.hasNext()) {
+			count = fileInput1.nextLine();
+			i++;
+		}
+		fileInput1.close();
+		String [] array = new String [i];
+		i=0;
+		while(fileInput2.hasNext()) {
+			array [i] = fileInput2.nextLine();
+			i++;
+		}
+		fileInput2.close();
+		return array;
+	}
+	
+	public Stock [] StockInformation(String f) throws IOException {
+		Stock object = new Stock();
+		String [] stockFile = object.ReadFile(f);
+		Stock [] array = new Stock[stockFile.length];
+		String delim = "[,]";
+		for(int i=0; i<stockFile.length; i++) {
+			String [] stockInfo = stockFile[i].split(delim);
+			array[i] = new Stock();
+			array[i].setName(stockInfo [0]);
+			array[i].setSymbol(stockInfo [1]);
+			array[i].setCurrentPrice(Double.parseDouble(stockInfo[2]));
+		}
+			
+		return array;
+	}
+	
+	
 	
 }//Closes public Stock Class
