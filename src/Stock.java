@@ -227,46 +227,46 @@ public class Stock {
 		//Print results to screen for user to see the Stock Prices Fluctuation
 		System.out.printf("%s\t%s\t%.2f\t\t\t%.2f\t\t%.2f\t\t%.2f\n", cN, cS, cP, nP, nP-cP, rn);
 	}
-	public double FindAverage(double [][] p) {
+	public void FindAverage(Stock [] o) {
 		double sum = 0;
 		double average;
 		
-		for(int i=0; i<p.length; i++) {
-			sum+=p[0][i];
+		for(int i=0; i<o.length; i++) {
+			sum+=o[i].getCurrentPrice();
 		}
-		average = sum/p.length;
+		average = sum/o.length;
 		
-		return average;
+		System.out.printf("The average: %.2f\n", average);
 	}
 	
-	public String FindHighest(double [] p, String[] s) {
+	public void FindHighest(Stock [] o) {
 		String highest = new String();
 		int index = 0;
 		double value = 0;
 		
-		for(int i = 0; i<p.length; i++) {
-			if(p[i] > value) {
-				value = p[i];
+		for(int i = 0; i<o.length; i++) {
+			if(o[i].getCurrentPrice() > value) {
+				value = o[i].getCurrentPrice();
 				index = i;
 			}
 		}
-		highest = s[index];
-		return highest;
+		highest = o[index].getName();
+		System.out.println("The Stock with the highest price: " +highest);
 	}
 	
-	public String FindLowest(double [] p, String[] s) {
+	public void FindLowest(Stock [] o) {
 		String lowest = new String();
 		int index = 0;
-		double value = p[0];
+		double value = o[0].getCurrentPrice();
 		
-		for(int i = 0; i<p.length; i++) {
-			if(p[i] < value) {
-				value = p[i];
+		for(int i = 0; i<o.length; i++) {
+			if(o[i].getCurrentPrice() < value) {
+				value = o[i].getCurrentPrice();
 				index = i;
 			}
 		}
-		lowest = s[index];
-		return lowest;
+		lowest = o[index].getName();
+		System.out.println("The Stock with the lowest price: " +lowest);
 	}
 	
 	public String [] ReadFile (String f) throws IOException  {

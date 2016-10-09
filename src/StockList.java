@@ -20,8 +20,11 @@ public class StockList {
 		
 		Stock [] array = listObject.StockInformation(inputFileTitle);
 		
-		System.out.print(array[0].getName());
+		listObject.FindAverage(array);
 		
+		listObject.FindHighest(array);
+		
+		listObject.FindLowest(array);
 		
 		input.close();
 		
