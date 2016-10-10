@@ -1,3 +1,63 @@
+/* ========================================================================== */
+/*	PROGRAM List of Stocks
+
+    AUTHOR: Yuri Khechoyan & Jessie Wilkins
+    COURSE NUMBER: CIS 210
+    COURSE SECTION NUMBER: 01
+    INSTRUCTOR NAME: Dr. Tian
+    PROJECT NUMBER: 7
+    DUE DATE: 10/13/2016
+
+    
+
+SUMMARY
+
+	This program is designed to work similar to the previous program
+	(PriceStockSimulation). This new program is designed to
+	read in a list of stocks from the input text file (stocks.txt).
+	The program will extract the stock prices in order to 
+	do the following calculations:
+
+		1. Sum
+		2. Avg.
+		3. Name of Stock with the highest price
+		4. Name of stock with the lowest price
+
+	Once calculations have been completed, the calculations
+	listed above would be written to an output file.
+
+
+INPUT
+
+	Input will be read as Strings from a file. Program will
+	parse out all of the comments & extra spaces
+	The name and price of highest & lowest stock will 
+	be kept for later use. Once input is received, 
+	the prices will be converted into Doubles.
+
+
+
+OUTPUT
+
+	Output from program will be shown on console & written to an Output file
+	List of key things that will be written to the Output file:
+	
+		1. Sum
+		2. Avg.
+		3. Name of Stock with the highest price
+		4. Name of stock with the lowest price
+	
+
+ASSUMPTIONS
+
+- None
+
+*/
+
+
+
+
+
 import java.util.Random;			//Import Random Generator
 import java.io.*;
 import java.util.Scanner;
@@ -23,6 +83,7 @@ public class Stock {
 		currentPrice = 46.87;		//Assigns current price as default
 		nextPrice = 46.87;			//Assigns next price as default
 	}//Closes Stock Method
+	
 	/**
 	 * Determines if the default values should be used
 	 * @param cN

@@ -1,6 +1,9 @@
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.IOException;			//Imports IOException Method
+import java.util.Scanner;			//Imports Scanner Method to scan input file
 
+//*******************************
+//*	START OF StockList CLASS	*
+//*******************************
 public class StockList {
 
 	public static void main(String[] args) throws IOException {
