@@ -284,11 +284,12 @@ public class Stock {
 	 * @param nP
 	 * @param rn
 	 */
-	public void printResults(String cN, String cS, double cP, double nP, double rn) {
+	public void printResults(String cN, String cS, double cP, double nP, double rn) throws IOException {
 		//Print results to screen for user to see the Stock Prices Fluctuation
 		System.out.printf("%s\t%s\t%.2f\t\t\t%.2f\t\t%.2f\t\t%.2f\n", cN, cS, cP, nP, nP-cP, rn);
 	}
-	public void FindAverage(Stock [] o) {
+	public void FindAverage(Stock [] o, String fileName) throws IOException {
+		PrintWriter fileOutput = new PrintWriter(fileName);
 		double sum = 0;
 		double average;
 		
@@ -297,10 +298,14 @@ public class Stock {
 		}
 		average = sum/o.length;
 		
+		fileOutput.printf("The average: %.2f\n", average);
 		System.out.printf("The average: %.2f\n", average);
+		
+		fileOutput.close();
 	}
 	
-	public void FindHighest(Stock [] o) {
+	public void FindHighest(Stock [] o, String fileName) throws IOException {
+		PrintWriter fileOutput = new PrintWriter(fileName);
 		String highest = new String();
 		int index = 0;
 		double value = 0;
@@ -312,10 +317,15 @@ public class Stock {
 			}
 		}
 		highest = o[index].getName();
+		
+		fileOutput.println("The Stock with the highest price: " +highest);
 		System.out.println("The Stock with the highest price: " +highest);
+		
+		fileOutput.close();
 	}
 	
-	public void FindLowest(Stock [] o) {
+	public void FindLowest(Stock [] o, String fileName) throws IOException {
+		PrintWriter fileOutput = new PrintWriter(fileName);
 		String lowest = new String();
 		int index = 0;
 		double value = o[0].getCurrentPrice();
@@ -327,7 +337,11 @@ public class Stock {
 			}
 		}
 		lowest = o[index].getName();
+		
+		fileOutput.println("The Stock with the lowest price: " +lowest);
 		System.out.println("The Stock with the lowest price: " +lowest);
+		
+		fileOutput.close();
 	}
 	
 	public String [] ReadFile (String f) throws IOException  {

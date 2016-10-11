@@ -15,19 +15,24 @@ public class StockList {
 		
 		Scanner input = new Scanner(System.in);
 		
-		System.out.print("Please type in the name of the file: ");
+		System.out.print("Please type in the name of the input file: ");
 		
 		listObject.SetInputFileName(input.nextLine());
 		
 		inputFileTitle = listObject.GetInputFileName();
 		
+		System.out.print("Please type in the name of the output file");
+		
+		listObject.SetOutputFileName(input.nextLine());
+		outputFileTitle = listObject.getOutputFileName();
+		
 		Stock [] array = listObject.StockInformation(inputFileTitle);
 		
-		listObject.FindAverage(array);
+		listObject.FindAverage(array, outputFileTitle);
 		
-		listObject.FindHighest(array);
+		listObject.FindHighest(array, outputFileTitle);
 		
-		listObject.FindLowest(array);
+		listObject.FindLowest(array, outputFileTitle);
 		
 		input.close();
 		
