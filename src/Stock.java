@@ -55,9 +55,6 @@ ASSUMPTIONS
 */
 
 
-
-
-
 import java.util.Random;			//Import Random Generator
 import java.io.*;
 import java.util.Scanner;
@@ -170,15 +167,24 @@ public class Stock {
 			randomNumber = 1.00;
 		}
 	}//Closes setPercentage Method
-	
+	/**
+	 * This sets the output file name as the given string
+	 * @param s
+	 */
 	public void SetOutputFileName(String s) {
 		outputFileName = s;
 	}
+	/**
+	 * This sets the input file name as the given string if the file exists
+	 * @param s
+	 */
 	public void SetInputFileName(String s) {
+		//This declares and initializes the file object for the file of the given name
 		File file = new File(s);
 		
+		//This sets the input file name as the given string if it exists.
+		//Otherwise, it prints an error statement and exits the program.
 		if(file.isFile()) {
-			
 			inputFileName = s;
 		}
 		else{
@@ -227,9 +233,18 @@ public class Stock {
 		//returns the random number
 		return randomNumber;
 	}
+	/**
+	 * This returns the output file name
+	 * @return
+	 */
 	public String getOutputFileName() {
+		//returns the output file name
 		return outputFileName;
 	}
+	/**
+	 * This returns the input file name
+	 * @return
+	 */
 	public String GetInputFileName() {
 		return inputFileName;
 	}
@@ -288,42 +303,96 @@ public class Stock {
 		//Print results to screen for user to see the Stock Prices Fluctuation
 		System.out.printf("%s\t%s\t%.2f\t\t\t%.2f\t\t%.2f\t\t%.2f\n", cN, cS, cP, nP, nP-cP, rn);
 	}
-	public void FindAverage(Stock [] o, String fileName) throws IOException {
+	/**
+	 * This finds and prints out to the console and the output file the sum of the stock prices
+	 * @param o
+	 * @param fileName
+	 * @throws IOException
+	 */
+	public void FindSum(Stock [] o, String fileName) throws IOException {
+		//This declares and initializes the PrintWriter object with the given file name
 		PrintWriter fileOutput = new PrintWriter(fileName);
-		double sum = 0;
-		double average;
+		//Variables		
+		double sum = 0;				//This declares the double used as the sum and initializes it to zero
 		
+		//This finds the sum of the stock prices while the counter is less than
+		//the array length and sets it as the double variable
 		for(int i=0; i<o.length; i++) {
 			sum+=o[i].getCurrentPrice();
 		}
-		average = sum/o.length;
-		
-		fileOutput.printf("The average: %.2f\n", average);
-		System.out.printf("The average: %.2f\n", average);
-		
+		fileOutput.printf("The sum: %.2f\r\n", sum);
+		System.out.printf("The sum: %.2f\n", sum);
+		//This closes the output file object
 		fileOutput.close();
 	}
-	
-	public void FindHighest(Stock [] o, String fileName) throws IOException {
+	/**
+	 * This finds and prints out to the console and the output file the average of the stock prices
+	 * @param o
+	 * @param fileName
+	 * @throws IOException
+	 */
+	public void FindAverage(Stock [] o, String fileName) throws IOException {
+		//This declares and initializes the PrintWriter object with the given file name
 		PrintWriter fileOutput = new PrintWriter(fileName);
-		String highest = new String();
-		int index = 0;
-		double value = 0;
+		//Variables		
+		double sum = 0;				//This declares the double used as the sum and initializes it to zero
+		double average;				//This declares the double used as the average
 		
+		//This finds the sum of the stock prices while the counter is less than
+		//the array length and sets it as the double variable
+		for(int i=0; i<o.length; i++) {
+			sum+=o[i].getCurrentPrice();
+		}
+		//This finds the average and sets it as the double variable
+		average = sum/o.length;
+		//This prints the average to the console and the file
+		fileOutput.printf("The average: %.2f\r\n", average);
+		System.out.printf("The average: %.2f\n", average);
+		//This closes the output file object
+		fileOutput.close();
+	}
+	/**
+	 * This finds and prints out to the console and output file the highest stock price
+	 * @param o
+	 * @param fileName
+	 * @throws IOException
+	 */
+	public void FindHighest(Stock [] o, String fileName) throws IOException {
+		//This declares and initializes the PrintWriter object with the given file name
+		PrintWriter fileOutput = new PrintWriter(fileName);
+		//This declares and initializes the string object for the name of the 
+		//highest priced stock
+		String highest = new String();
+		//Variables
+		int index = 0;				//This declares the integer variable for the index and initializes it to zero
+		double value = 0;			//This declares the double variable for the value and initializes it to zero
+		//This sets the value to the highest stock price 
+		//while the counter is less than the object array length
 		for(int i = 0; i<o.length; i++) {
+			//This sets the first variable to the current price in the given element
+			//of the object array and sets the second variable to the current index.
+			//This occurs if the current price for the current element for the array is 
+			//greater than the value variable.
 			if(o[i].getCurrentPrice() > value) {
 				value = o[i].getCurrentPrice();
 				index = i;
 			}
 		}
+		//This sets the variable for the highest priced stock as the stock name of 
+		//the given element of the object array.
 		highest = o[index].getName();
-		
-		fileOutput.println("The Stock with the highest price: " +highest);
-		System.out.println("The Stock with the highest price: " +highest);
-		
+		//This prints out the name of the highest priced stock onto the console and the output file
+		fileOutput.println("The Stock with the highest price: " +highest+"\r\n");
+		System.out.println("The Stock with the highest price: " +highest+"\n");
+		//This closes the file output object
 		fileOutput.close();
 	}
-	
+	/**
+	 * This finds and prints out to the console and output file the highest stock price
+	 * @param o
+	 * @param fileName
+	 * @throws IOException
+	 */
 	public void FindLowest(Stock [] o, String fileName) throws IOException {
 		PrintWriter fileOutput = new PrintWriter(fileName);
 		String lowest = new String();
@@ -338,12 +407,17 @@ public class Stock {
 		}
 		lowest = o[index].getName();
 		
-		fileOutput.println("The Stock with the lowest price: " +lowest);
+		fileOutput.println("The Stock with the lowest price: " +lowest +"\r\n");
 		System.out.println("The Stock with the lowest price: " +lowest);
 		
 		fileOutput.close();
 	}
-	
+	/**
+	 * This reads the file and places the contents in a string array
+	 * @param f
+	 * @return
+	 * @throws IOException
+	 */
 	public String [] ReadFile (String f) throws IOException  {
 		File test = new File(f);
 		File file = new File(f);
@@ -365,7 +439,13 @@ public class Stock {
 		fileInput2.close();
 		return array;
 	}
-	
+	/**
+	 * This sets the stock information of the object array as the information from the file
+	 * and returns that object array
+	 * @param f
+	 * @return
+	 * @throws IOException
+	 */
 	public Stock [] StockInformation(String f) throws IOException {
 		Stock object = new Stock();
 		String [] stockFile = object.ReadFile(f);
@@ -378,10 +458,10 @@ public class Stock {
 			array[i].setSymbol(stockInfo [1]);
 			array[i].setCurrentPrice(Double.parseDouble(stockInfo[2]));
 		}
-			
+				
 		return array;
+		
+		
 	}
-	
-	
 	
 }//Closes public Stock Class
