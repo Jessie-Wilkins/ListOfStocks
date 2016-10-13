@@ -34,7 +34,7 @@ public class StockList {
 		//This deletes the content from the previous session
 		fileOutput.flush();
 		//This sets the Stock object array as the object array for the list of stocks
-		Stock [] array = listObject.StockInformation(inputFileTitle);
+		Stock [] array = listObject.StockInformation(inputFileTitle, fileOutput);
 		//This finds and prints out the sum of the stock prices
 		listObject.FindSum(array, fileOutput);
 		//This finds and prints out the average of the stock prices

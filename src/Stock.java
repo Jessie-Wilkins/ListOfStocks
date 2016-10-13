@@ -64,8 +64,8 @@ public class Stock {
 	//Variables
 	private String companyName;		//String object holding name of Company
 	private String companySymbol;	//String object holding Stock Symbol
-	private String outputFileName;
-	private String inputFileName;
+	private String outputFileName;	//String object holding output file name
+	private String inputFileName;	//String object holding input file name
 	private double currentPrice;	//Double holding Current Price of Stock
 	private double nextPrice;		//Double holding Next Price of Stock
 	private double randomNumber;	//Double holding random Number
@@ -246,6 +246,7 @@ public class Stock {
 	 * @return
 	 */
 	public String GetInputFileName() {
+		//returns the input file name
 		return inputFileName;
 	}
 	/**
@@ -436,6 +437,18 @@ public class Stock {
 		}
 		//This closes the input file object for counting the lines
 		fileInput1.close();
+		//This determines if the number of stocks is too small or too large
+		if(i<30){
+			String [] a = new String[]{"There are too few stocks for the program."};
+			fileInput2.close();
+			return a;
+			
+		}
+		else if(i>50) {
+			String [] a = new String[]{"There are too many stocks for the program."};
+			fileInput2.close();
+			return a;
+		}
 		//This stores the strings of each line in each element of the array
 		String [] array = new String [i];
 		//This reinitializes the counting variable in order to start from the first element of the 
@@ -459,12 +472,18 @@ public class Stock {
 	 * @return
 	 * @throws IOException
 	 */
-	public Stock [] StockInformation(String f) throws IOException {
+	public Stock [] StockInformation(String f, PrintWriter a) throws IOException {
 		//This declares and initializes the stock object 
 		Stock object = new Stock();
 		//This declares a string array and strings from the file of the given name
 		String [] stockFile = object.ReadFile(f);
 		//This declares and initializes the stock array to the string array length
+		if(stockFile[0] == "There are too few stocks for the program." || stockFile[0] == "There are too many stocks for the program.") {
+			System.out.println(stockFile[0]);
+			a.print(stockFile[0] + "\r\n");
+			System.exit(10007);
+		
+		}
 		Stock [] array = new Stock[stockFile.length];
 		//This declares the String delimiter and initializes it as a comma.
 		//This is used to indicate what character the string should be parsed.
