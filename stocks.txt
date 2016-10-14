@@ -22,12 +22,10 @@ Johnson & Johnson,JNJ,118.13
 JPMorgan Chase,JPM,66.59
 McDonald's,MCD,115.36
 Merck,MRK,62.41
-Microsoft,MSFT,57.60
 Pfizer,PFE,33.87
 Procter & Gamble,PG,89.75
 Travelers Companies Inc,TRV,114.55
 United Technologies,UTX,101.60
 UnitedHealth,UNH,140.00
 Verizon,VZ,51.98
-Visa,V,82.70
 Wal-Mart,WMT,72.12

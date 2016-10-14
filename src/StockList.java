@@ -6,7 +6,7 @@
     COURSE SECTION NUMBER: 01
     INSTRUCTOR NAME: Dr. Tian
     PROJECT NUMBER: 7
-    DUE DATE: 10/13/2016
+    DUE DATE: 10/15/2016
     
 SUMMARY
 
@@ -32,6 +32,9 @@ INPUT
 	The name and price of highest & lowest stock will 
 	be kept for later use. Once input is received, 
 	the prices will be converted into Doubles.
+	The program will also calculate the amount of stocks entered.
+	If there are less than 30 or more than 50 stocks, program will
+	give the user an error and program will terminate.
 
 OUTPUT
 
@@ -50,7 +53,7 @@ ASSUMPTIONS
 */
 
 import java.io.*;			//Imports IOException Method
-import java.util.Scanner;	//Imports Scanner Method to scan input file
+import java.util.Scanner;	//Imports Scanner Method to scan IO from user
 
 //*******************************
 //*	START OF StockList CLASS	*
@@ -67,35 +70,48 @@ public class StockList {
 
 		//This declares and initializes the Scanner object for user input
 		Scanner input = new Scanner(System.in);
+		
 		//This prints out the command to print the command to enter the input file name
 		System.out.print("Please type in the name of the input file: ");
+		
 		//This sets the input file name as the user input
 		listObject.SetInputFileName(input.nextLine());
+		
 		//This sets the String object for the input file as the given input file name
 		inputFileTitle = listObject.GetInputFileName();
+		
 		//This prints out the command to print the command to enter the output file name
 		System.out.print("Please type in the name of the output file: ");
+		
 		//This sets the output file name as the user input
 		listObject.SetOutputFileName(input.nextLine());
+		
 		//This sets the String object for the output file as the given output file name
 		outputFileTitle = listObject.GetOutputFileName();
+		
 		//This declares and initializes the output file object
 		PrintWriter fileOutput = new PrintWriter(outputFileTitle);
+		
 		//This sets the Stock object array as the object array for the list of stocks
 		Stock [] array = listObject.StockInformation(inputFileTitle, fileOutput);
+		
 		//This finds and prints out the sum of the stock prices
 		listObject.FindSum(array, fileOutput);
+		
 		//This finds and prints out the average of the stock prices
 		listObject.FindAverage(array, fileOutput);
+		
 		//This finds and prints out the highest stock price
 		listObject.FindHighest(array, fileOutput);
+		
 		//This finds and prints out the lowest stock price
 		listObject.FindLowest(array, fileOutput);
+		
 		//This closes the input object and output object
 		input.close();
 		fileOutput.close();
 		
 		
-	}
+	}//Closes Main Method
 
-}
+}//Closes StockList Class
