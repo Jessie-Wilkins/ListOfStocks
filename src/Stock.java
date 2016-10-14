@@ -1,33 +1,18 @@
-import java.util.Random;			//Import Random Generator
-import java.io.*;
-import java.util.Scanner;
+import java.io.*;					//Imports file input and output classes used to read from and write to files
+import java.util.Scanner;			//Imports Scanner class used to accept user input
 
 
 public class Stock {
 	//Variables
 	private String companyName;		//String object holding name of Company
 	private String companySymbol;	//String object holding Stock Symbol
-<<<<<<< HEAD
-	private String outputFileName;	//String object holding output file name
-	private String inputFileName;	//String object holding input file name
-=======
 	private String outputFileName;	//String object holding the output file
 	private String inputFileName;	//String object holding the input file
->>>>>>> 9eca14c39b6266838c2fa04b998df9703bf160e4
 	private double currentPrice;	//Double holding Current Price of Stock
-	private double nextPrice;		//Double holding Next Price of Stock
-	private double randomNumber;	//Double holding random Number
 	
-	/**
-	 * This sets the private variables to the default
-	 */
-	public Stock() {
-		//Assigns default values for private variables
-		companyName = "Microsoft";	//Assigns company name as default
-		companySymbol = "MSFT";		//Assigns company symbol as default
-		currentPrice = 46.87;		//Assigns current price as default
-		nextPrice = 46.87;			//Assigns next price as default
-	}//Closes Stock Method
+	//Constants
+	final private int MIN_NUMBER_OF_STOCKS = 30;
+	final private int MAX_NUMBER_OF_STOCKS = 50;
 	
 	/**
 	 * Determines if the default values should be used
@@ -45,18 +30,27 @@ public class Stock {
 		
 	}//Closes WhichDefaultValue Method
 	/**
+	 * Default constructor that does nothing
+	 * @param n
+	 * @param s
+	 * @param cP
+	 */
+	public Stock() {
+	
+	}//Closes public Stock Method
+	/**
 	 * Sets the private variables to the given values
 	 * @param n
 	 * @param s
 	 * @param cP
 	 * @param nP
 	 */
-	public Stock(String n, String s, double cP, double nP) {
+	public Stock(String n, String s, double cP) {
 		//Stock Method that creates user instance of Stock details
 		companyName = n;
 		companySymbol = s;
 		currentPrice = cP;
-		nextPrice = nP;
+		
 	}//Closes public Stock Method
 	/**
 	 * This sets the company name to the given string
@@ -88,33 +82,7 @@ public class Stock {
 			currentPrice = 1;
 		}//Close if statement
 	}//Closes setCurrentPrice Method
-	/**
-	 * This sets the next price to the given double
-	 * @param nP
-	 */
-	public void setNextPrice(double nP) {
-		//Error Checking for: nextPrice > 0, set the value to the variable; otherwise set to 1
-		if(nP > 0) {
-			nextPrice = nP;
-		}//Close if statement
-		
-		else {
-			nextPrice = 1;
-		}//Close else statement
-	}//Closes setNextPrice Method
-	/**
-	 * This sets the percentage to the given double
-	 * @param p
-	 */
-	public void setPercentage(double p) {
-		//Error Checking for: randomNumber > 0, set the value to the variable; otherwise set to 1
-		if(p > 0) {
-			randomNumber = p;
-		}
-		else {
-			randomNumber = 1.00;
-		}
-	}//Closes setPercentage Method
+
 	/**
 	 * This sets the output file name as the given string
 	 * @param s
@@ -140,7 +108,7 @@ public class Stock {
 			System.exit(1004);
 		}
 		
-	}
+	} //Closes SetInputFileName
 	/**
 	 * This returns the company name 
 	 * @return
@@ -165,22 +133,7 @@ public class Stock {
 		//returns the current price of the company
 		return currentPrice;
 	}
-	/**
-	 * This returns the next price 
-	 * @return
-	 */
-	public double getNextPrice() {
-		//returns the current price of the company
-		return nextPrice;
-	}
-	/**
-	 * This returns the percentage
-	 * @return
-	 */
-	public double getPercentage() {
-		//returns the random number
-		return randomNumber;
-	}
+	
 	/**
 	 * This returns the output file name
 	 * @return
@@ -194,67 +147,13 @@ public class Stock {
 	 * @return
 	 */
 	public String GetInputFileName() {
-		//returns the input file name
 		return inputFileName;
 	}
-	/**
-	 * This changes next price according the percentage by a negative or positive number
-	 */
-	public void priceChange() {
-		//Variables
-		boolean decide;						//declares a boolean
-		double percent;						//declares a double used as the percent
-		double currentPrice;				//declares a double used as the current price
-		
-		//This declares the random generator object
-		Random randInt = new Random();
-		//This sets the percentage as a random integer between 0 and 10
-		setPercentage(randInt.nextInt(10));
-		//This sets the variable as the percentage
-		percent = getPercentage();
-		//This sets the variable as the current price
-		currentPrice = getCurrentPrice();
-		//This declares the random generator object
-		Random negOrPos = new Random();
-		//This assigns the variables as a boolean
-		decide = negOrPos.nextBoolean();
-		
-		//This sets the next price as the current price - the percentage of current price
-		//if decide is true
-		if(decide) {
-			setNextPrice(currentPrice-(currentPrice*.01*percent));
-		}//Close if statement
-		//This sets the next price as the current price + the percentage of current price
-		//if the former condition is false
-		else {
-			setNextPrice(currentPrice+(currentPrice*.01*percent));
-		}//Close else statement
-		
-	}//Closes priceChange Method
 	
-	/**
-	 * Prints Headers for each Category
-	 */
-	public void printHeaders(){
-		//Outputs the header names
-		System.out.println("STOCK\tSYMBOL\tYESTERDAY'S PRICE\tTODAY'S PRICE\tPRICE MOVEMENT\tCHANGE PERCENT");
-	}
 	
-	/**
-	 * This prints the Headers & stock information
-	 * @param cN
-	 * @param cS
-	 * @param cP
-	 * @param nP
-	 * @param rn
-	 */
-	public void printResults(String cN, String cS, double cP, double nP, double rn) throws IOException {
-		//Print results to screen for user to see the Stock Prices Fluctuation
-		System.out.printf("%s\t%s\t%.2f\t\t\t%.2f\t\t%.2f\t\t%.2f\n", cN, cS, cP, nP, nP-cP, rn);
-	}
 	/**
 	 * This finds and prints out to the console and the output file the sum of the stock prices
-	 * @param o
+	 * @param o		//Array Object
 	 * @param fileName
 	 * @throws IOException
 	 */
@@ -274,7 +173,7 @@ public class Stock {
 	}
 	/**
 	 * This finds and prints out to the console and the output file the average of the stock prices
-	 * @param o
+	 * @param o 		//Array Object
 	 * @param fileName
 	 * @throws IOException
 	 */
@@ -379,21 +278,23 @@ public class Stock {
 		//This creates the integer variable used to keep track of how many lines are used
 		int i = 0;
 		//This counts the number of lines by accepting the input of each line
-		//and incrementing the counter variable while there is a next line.
+		//and, if the line is not blank, incrementing the counter variable while there is a next line.
 		while(fileInput1.hasNext()) {
-			count = fileInput1.nextLine();
-			i++;
+			count = fileInput1.nextLine().trim();
+			if(!(count.isEmpty())) {
+				i++;
+			}
 		}
 		//This closes the input file object for counting the lines
 		fileInput1.close();
 		//This determines if the number of stocks is too small or too large
-		if(i<30){
+		if(i<MIN_NUMBER_OF_STOCKS){
 			String [] a = new String[]{"There are too few stocks for the program."};
 			fileInput2.close();
 			return a;
-			
+					
 		}
-		else if(i>50) {
+		else if(i>MAX_NUMBER_OF_STOCKS) {
 			String [] a = new String[]{"There are too many stocks for the program."};
 			fileInput2.close();
 			return a;
@@ -403,13 +304,17 @@ public class Stock {
 		//This reinitializes the counting variable in order to start from the first element of the 
 		//string array.
 		i=0;
-		//This accepts the file input and stores it in each array element of the string array
-		//and increments the counter variable while there is a next line.
+		//This accepts the file input and stores it in each array element of the string array without leading white space
+		//and, if the line is not blank, increments the counter variable while there is a next line.
 		while(fileInput2.hasNext()) {
-			array [i] = fileInput2.nextLine();
-			i++;
+			count = fileInput2.nextLine().trim();
+			if(!(count.isEmpty())) {
+				array [i] = count;
+				i++;
+			}
+			
 		}
-		//This closes the file object output
+		//This closes the file object that reads each line in file
 		fileInput2.close();
 		//This returns the string array
 		return array;
@@ -431,8 +336,9 @@ public class Stock {
 			System.out.println(stockFile[0]);
 			a.print(stockFile[0] + "\r\n");
 			System.exit(10007);
-		
+				
 		}
+		//This declares and initializes the stock array to the string array length
 		Stock [] array = new Stock[stockFile.length];
 		//This declares the String delimiter and initializes it as a comma.
 		//This is used to indicate what character the string should be parsed.
