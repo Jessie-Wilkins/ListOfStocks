@@ -78,12 +78,9 @@ public class StockList {
 		//This sets the output file name as the user input
 		listObject.SetOutputFileName(input.nextLine());
 		//This sets the String object for the output file as the given output file name
-		outputFileTitle = listObject.getOutputFileName();
-		//This declares and initializes the append file object and the output file object
-		FileWriter append = new FileWriter(outputFileTitle, true);
-		PrintWriter fileOutput = new PrintWriter(append);
-		//This deletes the content from the previous session
-		fileOutput.flush();
+		outputFileTitle = listObject.GetOutputFileName();
+		//This declares and initializes the output file object
+		PrintWriter fileOutput = new PrintWriter(outputFileTitle);
 		//This sets the Stock object array as the object array for the list of stocks
 		Stock [] array = listObject.StockInformation(inputFileTitle, fileOutput);
 		//This finds and prints out the sum of the stock prices
@@ -94,8 +91,10 @@ public class StockList {
 		listObject.FindHighest(array, fileOutput);
 		//This finds and prints out the lowest stock price
 		listObject.FindLowest(array, fileOutput);
-		//This closes the input object
+		//This closes the input object and output object
 		input.close();
+		fileOutput.close();
+		
 		
 	}
 

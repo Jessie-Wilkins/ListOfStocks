@@ -1,18 +1,18 @@
-import java.io.*;					//Imports file input and output classes used to read from and write to files
-import java.util.Scanner;			//Imports Scanner class used to accept user input
+import java.io.*;									//Imports file input and output classes used to read from and write to files
+import java.util.Scanner;							//Imports Scanner class used to accept user input
 
 
 public class Stock {
 	//Variables
-	private String companyName;		//String object holding name of Company
-	private String companySymbol;	//String object holding Stock Symbol
-	private String outputFileName;	//String object holding the output file
-	private String inputFileName;	//String object holding the input file
-	private double currentPrice;	//Double holding Current Price of Stock
+	private String companyName;						//String object holding name of Company
+	private String companySymbol;					//String object holding Stock Symbol
+	private String outputFileName;					//String object holding the output file
+	private String inputFileName;					//String object holding the input file
+	private double currentPrice;					//Double holding Current Price of Stock
 	
 	//Constants
-	final private int MIN_NUMBER_OF_STOCKS = 30;
-	final private int MAX_NUMBER_OF_STOCKS = 50;
+	final private int MIN_NUMBER_OF_STOCKS = 30;	//Integer constant holding the minimum number of stocks
+	final private int MAX_NUMBER_OF_STOCKS = 50;	//Integer constant holding the maximum number of stocks
 	
 	/**
 	 * Determines if the default values should be used
@@ -23,9 +23,9 @@ public class Stock {
 	public void WhichDefaultValue(String cN, String cS, double cP) {
 		//This sets the name, symbols, and current price if they do not equal the default value keywords
 		if(!(cN.contentEquals("NONE")) && !(cS.contentEquals("NA")) && cP != 0.0) {
-			setName(cN);
-			setSymbol(cS);
-			setCurrentPrice(cP); 
+			SetName(cN);
+			SetSymbol(cS);
+			SetCurrentPrice(cP); 
 		}//Closes if statement
 		
 	}//Closes WhichDefaultValue Method
@@ -56,7 +56,7 @@ public class Stock {
 	 * This sets the company name to the given string
 	 * @param n
 	 */
-	public void setName(String n){
+	public void SetName(String n){
 		//Assigns the name to the private variable
 		companyName = n;
 	}
@@ -64,7 +64,7 @@ public class Stock {
 	 * This sets the company symbol to the given string
 	 * @param s
 	 */
-	public void setSymbol(String s) {
+	public void SetSymbol(String s) {
 		//Assigns the symbol to the private variable
 		companySymbol = s;
 	}
@@ -72,7 +72,7 @@ public class Stock {
 	 * This sets the current price to the given double
 	 * @param cP
 	 */
-	public void setCurrentPrice(double cP) {
+	public void SetCurrentPrice(double cP) {
 		//Error Checking for: currentPrice > 0, set the value to the variable; otherwise set to 1
 		if(cP > 0) {
 			currentPrice = cP;
@@ -113,7 +113,7 @@ public class Stock {
 	 * This returns the company name 
 	 * @return
 	 */
-	public String getName() {
+	public String GetName() {
 		//returns the name of the company
 		return companyName;
 	}
@@ -121,7 +121,7 @@ public class Stock {
 	 * This returns the company symbol
 	 * @return
 	 */
-	public String getSymbol() {
+	public String GetSymbol() {
 		//returns the name of the company
 		return companySymbol;
 	}
@@ -129,7 +129,7 @@ public class Stock {
 	 * This returns the current price
 	 * @return
 	 */
-	public double getCurrentPrice() {
+	public double GetCurrentPrice() {
 		//returns the current price of the company
 		return currentPrice;
 	}
@@ -138,7 +138,7 @@ public class Stock {
 	 * This returns the output file name
 	 * @return
 	 */
-	public String getOutputFileName() {
+	public String GetOutputFileName() {
 		//returns the output file name
 		return outputFileName;
 	}
@@ -165,7 +165,7 @@ public class Stock {
 		//This finds the sum of the stock prices while the counter is less than
 		//the array length and sets it as the double variable
 		for(int i=0; i<o.length; i++) {
-			sum+=o[i].getCurrentPrice();
+			sum+=o[i].GetCurrentPrice();
 		}
 		fo.printf("The sum: %.2f\r\n", sum);
 		System.out.printf("The sum: %.2f\n", sum);
@@ -185,7 +185,7 @@ public class Stock {
 		//This finds the sum of the stock prices while the counter is less than
 		//the array length and sets it as the double variable
 		for(int i=0; i<o.length; i++) {
-			sum+=o[i].getCurrentPrice();
+			sum+=o[i].GetCurrentPrice();
 		}
 		//This finds the average and sets it as the double variable
 		average = sum/o.length;
@@ -215,14 +215,14 @@ public class Stock {
 			//of the object array and sets the second variable to the current index.
 			//This occurs if the current price for the current element for the array is 
 			//greater than the value variable.
-			if(o[i].getCurrentPrice() > value) {
-				value = o[i].getCurrentPrice();
+			if(o[i].GetCurrentPrice() > value) {
+				value = o[i].GetCurrentPrice();
 				index = i;
 			}
 		}
 		//This sets the variable for the highest priced stock as the stock name of 
 		//the given element of the object array.
-		highest = o[index].getName();
+		highest = o[index].GetName();
 		//This prints out the name of the highest priced stock onto the console and the output file
 		fo.println("The Stock with the highest price: " +highest+"\r\n");
 		System.out.println("The Stock with the highest price: " +highest+"\n");
@@ -239,7 +239,7 @@ public class Stock {
 		String lowest = new String();
 		//Variables
 		int index = 0;							//This declares the integer variable for the index and initializes it to zero
-		double value = o[0].getCurrentPrice();	//This declares the double variable for the value and initializes it to the current price of the first element
+		double value = o[0].GetCurrentPrice();	//This declares the double variable for the value and initializes it to the current price of the first element
 		
 		//This sets the value to the highest stock price 
 		//while the counter is less than the object array length
@@ -248,14 +248,14 @@ public class Stock {
 			//of the object array and sets the second variable to the current index.
 			//This occurs if the current price for the current element for the array is 
 			//less than the value variable.
-			if(o[i].getCurrentPrice() < value) {
-				value = o[i].getCurrentPrice();
+			if(o[i].GetCurrentPrice() < value) {
+				value = o[i].GetCurrentPrice();
 				index = i;
 			}
 		}
 		//This sets the variable for the lowest priced stock as the stock name of 
 		//the given element of the object array.
-		lowest = o[index].getName();
+		lowest = o[index].GetName();
 		//This prints out the name of the lowest priced stock onto the console and the output file
 		fo.println("The Stock with the lowest price: " +lowest +"\r\n");
 		System.out.println("The Stock with the lowest price: " +lowest);
@@ -354,9 +354,9 @@ public class Stock {
 			//These set the name, symbol, and the price of the stock in the stock array
 			//according to the String array's first, second, and third element respectively.
 			//When setting the price, the string array element is converted into a double.
-			array[i].setName(stockInfo [0]);
-			array[i].setSymbol(stockInfo [1]);
-			array[i].setCurrentPrice(Double.parseDouble(stockInfo[2]));
+			array[i].SetName(stockInfo [0]);
+			array[i].SetSymbol(stockInfo [1]);
+			array[i].SetCurrentPrice(Double.parseDouble(stockInfo[2]));
 		}
 		//This returns the stock array.
 		return array;
